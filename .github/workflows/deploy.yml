@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   release:
-    types: [prereleased, released, deleted]
+    types: [published, deleted]
 
 jobs:
   info:
@@ -23,3 +23,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get tag name
         run: echo "${{ steps.get_release.outputs.tag_name }}"
+      - name: Get released
+        run: echo "${{ toJson(github.event.release) }}"
