@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   release:
-    types: [published, deleted]
+    types: [published, edited, deleted]
 
 jobs:
   info:
