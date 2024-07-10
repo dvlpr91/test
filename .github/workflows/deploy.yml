@@ -18,8 +18,8 @@ jobs:
         uses: joutvhu/get-release@v1
         with:
           latest: true
-          prerelease: true
+          prerelease: ${{ github.event.release.prerelease }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Get release
-        run: echo "${{ toJson(steps.get_release.outputs) }}"
+      - name: Get tag name
+        run: echo "${{ steps.get_release.outputs.tag_name }}"
