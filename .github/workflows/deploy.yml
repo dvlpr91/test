@@ -11,9 +11,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Action name
-        run: echo "${{ github.event.action }}"
+        run: echo '${{ github.event.action }}'
       - name: Check pre-release
-        run: echo "${{ github.event.release.prerelease }}"
+        run: echo '${{ github.event.release.prerelease }}'
       - id: get_release
         uses: joutvhu/get-release@v1
         with:
@@ -22,6 +22,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get tag name
-        run: echo "${{ steps.get_release.outputs.tag_name }}"
+        run: echo '${{ steps.get_release.outputs.tag_name }}'
       - name: Get released
-        run: echo "${{ toJson(github.event.release) }}"
+        run: echo '${{ toJson(github.event.release) }}'
