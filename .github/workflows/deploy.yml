@@ -1,0 +1,27 @@
+name: Deploy
+
+on:
+  release:
+    types: [published, edited, deleted]
+
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Action name
+        run: echo "${{ github.event.action }}"
+      - name: Check pre-release
+        run: echo "${{ github.event.release.prerelease }}"
+      - id: get_release
+        uses: joutvhu/get-release@v1
+        with:
+          latest: true
+          prerelease: ${{ github.event.release.prerelease }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get tag name
+        run: echo "${{ steps.get_release.outputs.tag_name }}"
+      - name: Get released
+        run: echo "${{ toJson(github.event.release) }}"
